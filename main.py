@@ -16,10 +16,10 @@ class Map(pydantic.BaseModel):
 
 
 def generate_maps_xml(maps: list[Map]):
-    xml = ElementTree.Element(
-        "ToggleGroup", {"id": "fanMapButtons1", "active": "False"}
-    )
-    xml.append(
+    xml = [
+        ElementTree.Element("ToggleGroup", {"id": "fanMapButtons1", "active": "False"})
+    ]
+    xml[0].append(
         ElementTree.Element(
             "Test Map 1", {"author": "Test Author 1", "color": "#000001"}
         )

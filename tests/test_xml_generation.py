@@ -18,6 +18,12 @@ def make_test_map(index: int) -> Map:
     )
 
 
+def xml_lists_equal(xml1: list[ElementTree.Element], xml2: list[ElementTree.Element]):
+    if len(xml1) != len(xml2):
+        return False
+    return all(elements_equal(e1, e2) for e1, e2 in zip(xml1, xml2))
+
+
 def elements_equal(e1, e2):
     if e1.tag != e2.tag:
         return False
@@ -45,13 +51,13 @@ def test_map_generation(indices: list[int]):
 
     # <ToggleGroup id="fanMapButtons1" active="False">
     #     f"Test Map 1", {"author": "Test Author 1", "color": "#000001"}
-    expected = ElementTree.Element(
-        "ToggleGroup", {"id": "fanMapButtons1", "active": "False"}
-    )
-    expected.append(
+    expected = [
+        ElementTree.Element("ToggleGroup", {"id": "fanMapButtons1", "active": "False"})
+    ]
+    expected[0].append(
         ElementTree.Element(
             "Test Map 1", {"author": "Test Author 1", "color": "#000001"}
         )
     )
 
-    assert elements_equal(actual, expected)
+    assert xml_lists_equal(actual, expected)
