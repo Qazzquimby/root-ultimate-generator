@@ -1,32 +1,25 @@
-# <ToggleGroup id="fanMapButtons1" active="False">
-#     <Button id="Summer Map" onClick="makeMap" onMouseEnter = "infoNevakanezahAndSlug" onMouseExit="clearInfo" position="-25 5 -20" width="40" height="20" fontSize="8" icon ="Summer Map" color="#4b4d35"/>
-#     <Button id="Legends Map" onClick="makeMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="15 5 -20" width="40" height="20" fontSize="8" icon ="Legends Map" color="#FAE5B3"/>
-#     <Button id="Urban Map" onClick="makeMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="55 5 -20" width="40" height="20" fontSize="8" icon ="Urban Map" color="#9b8551"/>
-#     <Button id="Lost Woodland Map" onclick="makeMap" onMouseEnter = "infoEndgamer" onMouseExit="clearInfo" position="95 5 -20" width="40" height="20" fontSize="8" icon ="Lost Woodland Map" color="#5b5a36"/>
-#
-#     <Button id="Gorge Map" onClick="makeMap" onMouseEnter = "infoLordOfTheBoard" onMouseExit="clearInfo" position="-25 -15 -20" width="40" height="20" fontSize="8" icon ="Gorge Map" color="#61746b"/>
-#     <Button id="Treasure Island Map" onclick="makeMap" position="15 -15 -20" width="40" height="20" onMouseEnter = "infoSupacatone" onMouseExit="clearInfo" fontSize="8" icon ="Treasure Island Map" color="#567826"/>
-#     <Button id="The Deep Woods Map" onclick="makeMap" onMouseEnter="infoSlug" onMouseExit="clearInfo" position="55 -15 -20" width="40" height="20" fontSize="8" icon ="Deep Woods Map" color="#3f4839"/>
-#     <Button onclick="maps2" position="95 -15 -20" width="40" height="20" fontSize="8" icon ="More Button" color="#f3ecd1"/>
-# </ToggleGroup>
-#
-#
-#
-# <ToggleGroup id="fanMapButtons2" active="False">
-#   <Button id="Australia Map" onclick="makeMap" onMouseEnter = "infoVatechman3" onMouseExit="clearInfo" position="-25 5 -20" width="40" height="20" fontSize="8" icon ="Australia Map" color="#899c58"/>
-#   <Button id="Narrows and Islets Map" onclick="makeMap" onMouseEnter = "infoHierotitanAndLeonatus" onMouseExit="clearInfo" position="15 5 -20" width="40" height="20" fontSize="8" icon ="Narrows and Islets Map" color="#9c9a7b"/>
-#   <Button id="Tunnel Unraveled Map" onclick="makeMap" onMouseEnter = "infoTunnelMap" onMouseExit="clearInfo" position="55 5 -20" width="40" height="20" fontSize="8" icon ="Tunnel Unraveled Map" color="#422e19"/>
-#   <Button id="Tropics Map" onclick="makeMap" onMouseEnter = "infoJ444" onMouseExit="clearInfo" position="95 5 -20" width="40" height="20" fontSize="8" icon ="Tropics Map" color="#7e986c"/>
-#   <Button id="The Wastelands Map" onclick="makeMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="15 -15 -20" width="40" height="20" fontSize="8" icon ="Wastelands Map" color="#83805b"/>
-#
-#
-#   <Button onclick="maps1" position="-25 -15 -20" width="40" height="20" fontSize="8" icon ="Back Button" color="#f3ecd1"/>
-# </ToggleGroup>
 from xml.etree import ElementTree as ElementTree
 
 import pydantic
 
 from xml_utilities import make_element_with_children
+
+MAP_BUTTON_POSITIONS = [
+    "-25 5 -20",
+    "15 5 -20",
+    "55 5 -20",
+    "95 5 -20",
+    "-25 -15 -20",
+    "15 -15 -20",
+    "55 -15 -20",
+    "95 -15 -20",
+]
+
+BUTTON_PROPERTIES = {
+    "width": "40",
+    "height": "20",
+    "fontSize": "8",
+}
 
 
 class Map(pydantic.BaseModel):
@@ -43,24 +36,10 @@ class Map(pydantic.BaseModel):
                 "onMouseEnter": self.author,
                 "onMouseExit": "clearInfo",
                 "position": get_map_button_position(index),
-                "width": "40",
-                "height": "20",
-                "fontSize": "8",
                 "color": self.color,
+                **BUTTON_PROPERTIES,
             },
         )
-
-
-MAP_BUTTON_POSITIONS = [
-    "-25 5 -20",
-    "15 5 -20",
-    "55 5 -20",
-    "95 5 -20",
-    "-25 -15 -20",
-    "15 -15 -20",
-    "55 -15 -20",
-    "95 -15 -20",
-]
 
 
 def get_map_button_position(index: int):
@@ -74,11 +53,9 @@ def make_next_map_button(current_page_index: int):
         {
             "onclick": f"maps{current_page_number + 1}",
             "position": MAP_BUTTON_POSITIONS[-1],
-            "width": "40",
-            "height": "20",
-            "fontSize": "8",
             "icon": "More Button",
             "color": "#f3ecd1",
+            **BUTTON_PROPERTIES,
         },
     )
 
@@ -90,11 +67,9 @@ def make_previous_map_button(current_page_index: int):
         {
             "onclick": f"maps{current_page_number - 1}",
             "position": MAP_BUTTON_POSITIONS[4],
-            "width": "40",
-            "height": "20",
-            "fontSize": "8",
             "icon": "Back Button",
             "color": "#f3ecd1",
+            **BUTTON_PROPERTIES,
         },
     )
 
@@ -152,3 +127,23 @@ def make_map_pages(maps: list[Map]) -> list[list[ElementTree.Element]]:
             break
 
     return pages
+
+
+maps = [
+    Map(name="Summer Map", author="infoNevakanezahAndSlug", color="#4b4d35"),
+    Map(name="Legends Map", author="infoSlug", color="#FAE5B3"),
+    Map(name="Urban Map", author="infoSlug", color="#9b8551"),
+    Map(name="Lost Woodland Map", author="infoEndgamer", color="#5b5a36"),
+    Map(name="Gorge Map", author="infoLordOfTheBoard", color="#61746b"),
+    Map(name="Treasure Island Map", author="infoSupacatone", color="#567826"),
+    Map(name="The Deep Woods Map", author="infoSlug", color="#3f4839"),
+    Map(name="Australia Map", author="infoVatechman3", color="#899c58"),
+    Map(
+        name="Narrows and Islets Map",
+        author="infoHierotitanAndLeonatus",
+        color="#9c9a7b",
+    ),
+    Map(name="Tunnel Unraveled Map", author="infoTunnelMap", color="#422e19"),
+    Map(name="Tropics Map", author="infoJ444", color="#7e986c"),
+    Map(name="The Wastelands Map", author="infoSlug", color="#83805b"),
+]

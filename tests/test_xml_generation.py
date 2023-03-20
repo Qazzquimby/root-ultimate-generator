@@ -1,10 +1,13 @@
 import pytest
 
 from xml_utilities import make_element_with_children
-from fan_maps import Map, \
-    get_map_button_position, \
-    make_next_map_button, \
-    make_previous_map_button, generate_maps_xml
+from fan_maps import (
+    Map,
+    get_map_button_position,
+    make_next_map_button,
+    make_previous_map_button,
+    generate_maps_xml,
+)
 import xml.etree.ElementTree as ElementTree
 
 # target_xml = Path("tests/target.xml").read_text()
