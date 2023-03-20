@@ -99,13 +99,13 @@ def test_map_generation_2():
 
 
 def test_map_generation_len8():
-    actual = generate_maps_xml([make_test_map(i) for i in range(1, 9)])
+    actual = generate_maps_xml([make_test_map(i) for i in range(8)])
 
     expected = [
         make_element_with_children(
             "ToggleGroup",
             {"id": "fanMapButtons1", "active": "False"},
-            [make_test_map_xml(name=i + 1, index=i) for i in range(8)],
+            [make_test_map_xml(name=i, index=i) for i in range(8)],
         )
     ]
 
@@ -120,12 +120,16 @@ def test_map_generation_len9():
             "ToggleGroup",
             {"id": "fanMapButtons1", "active": "False"},
             [make_test_map_xml(name=i, index=i) for i in range(7)]
-            + [make_next_map_button(1)],
+            + [make_next_map_button(0)],
         ),
         make_element_with_children(
             "ToggleGroup",
             {"id": "fanMapButtons2", "active": "False"},
-            [make_test_map_xml(name=8, index=0), make_previous_map_button(2)],
+            [
+                make_test_map_xml(name=7, index=0),
+                make_test_map_xml(name=8, index=1),
+                make_previous_map_button(1),
+            ],
         ),
     ]
 
