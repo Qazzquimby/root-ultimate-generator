@@ -114,7 +114,6 @@ def make_map_pages(maps: list[Map]) -> list[list[ElementTree.Element]]:
     pages = []
 
     current_page_index = 0
-    current_map_index = 0
 
     while True:
         # new page
@@ -130,14 +129,17 @@ def make_map_pages(maps: list[Map]) -> list[list[ElementTree.Element]]:
         items_on_page = remaining_maps[:num_items_on_page]
         remaining_maps = remaining_maps[num_items_on_page:]
 
-        page = [
-            item.make_board_selector_xml(index)
-            for index, item in enumerate(items_on_page)
-        ]
         if is_page_before:
-            page.insert(4, make_previous_map_button(current_page_index))
+            items_on_page.insert(4, make_previous_map_button(current_page_index))
         if is_page_after:
-            page.append(make_next_map_button(current_page_index))
+            items_on_page.append(make_next_map_button(current_page_index))
+
+        page = []
+        for index, item in enumerate(items_on_page):
+            if isinstance(item, Map):
+                page.append(item.make_board_selector_xml(index))
+            else:
+                page.append(item)
         pages.append(page)
 
         current_page_index += 1
