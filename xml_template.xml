@@ -151,7 +151,6 @@
     <Button id="Treasure Island Map" onclick="makeMap" position="15 -15 -20" width="40" height="20" onMouseEnter = "infoSupacatone" onMouseExit="clearInfo" fontSize="8" icon ="Treasure Island Map" color="#567826"/>
     <Button id="The Deep Woods Map" onclick="makeMap" onMouseEnter="infoSlug" onMouseExit="clearInfo" position="55 -15 -20" width="40" height="20" fontSize="8" icon ="Deep Woods Map" color="#3f4839"/>
     <Button onclick="maps2" position="95 -15 -20" width="40" height="20" fontSize="8" icon ="More Button" color="#f3ecd1"/>
-
 </ToggleGroup>
 
 
