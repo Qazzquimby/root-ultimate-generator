@@ -375,7 +375,7 @@
 
   <Button id ="TournTurnIcon" onclick="EhssAndSlug" icon="TournFirstPlayerButton" position="-25 -65 -20" width="40" height="20" color ="#E53F36"/>
 
-  <Button id="Summer Map Tournament" onClick="tournamentMapSelect" onMouseEnter = "infoNevakanezahAndSlug" onMouseExit="clearInfo" position="-25 35 -20" width="40" height="20" fontSize="8" icon ="Summer Map" color="#4b4d35"/>
+  <Button id="Summer Map Tournament" onclick="tournamentMapSelect" onMouseEnter = "infoNevakanezahAndSlug" onMouseExit="clearInfo" position="-25 35 -20" width="40" height="20" fontSize="8" icon ="Summer Map" color="#4b4d35"/>
   <Button id="Winter Map Tournament" onMouseEnter="infoOfficialContent" onMouseExit="clearInfo" onclick="tournamentMapSelect" position="15 45 -20" width="40" height="40" fontSize="8" icon ="Winter Map" color="#739195"/>
   <Button id="Lake Map Tournament" onMouseEnter="infoOfficialContent" onMouseExit="clearInfo" onclick="tournamentMapSelect" position="55 45 -20" width="40" height="40" fontSize="8" icon ="Lake Map" color="#47a3c2"/>
   <Button id="Mountain Map Tournament" onMouseEnter="infoOfficialContent" onMouseExit="clearInfo" onclick="tournamentMapSelect" position="95 45 -20" width="40" height="40" fontSize="8" icon ="TournMountainButton" color="#7c4f59"/>
@@ -413,14 +413,14 @@
 </ToggleGroup>
 
 <ToggleGroup id="mapDraftingFan1" active="False">
-  <Button id="Summer Map" onClick="draftMap" onMouseEnter = "infoNevakanezahAndSlug" onMouseExit="clearInfo" position="-25 -20 -20" width="40" height="20" fontSize="8" icon ="Summer Map" color="#4b4d35"/>
+  <Button id="Summer Map" onclick="draftMap" onMouseEnter = "infoNevakanezahAndSlug" onMouseExit="clearInfo" position="-25 -20 -20" width="40" height="20" fontSize="8" icon ="Summer Map" color="#4b4d35"/>
   <Button id="Legends Map" onclick="draftMap" position="15 -20 -20" width="40" height="20" onMouseEnter = "infoSlug" onMouseExit="clearInfo" fontSize="8" icon ="Legends Map" color="#FAE5B3"/>
   <Button id="Lost Woodland Map" onclick="draftMap" onMouseEnter = "infoEndgamer" onMouseExit="clearInfo" position="95 -20 -20" width="40" height="20" fontSize="8" icon ="Lost Woodland Map" color="#5b5a36"/>
-  <Button id="Urban Map" onClick="draftMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="55 -20 -20" width="40" height="20" fontSize="8" icon ="Urban Map" color="#9b8551"/>
+  <Button id="Urban Map" onclick="draftMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="55 -20 -20" width="40" height="20" fontSize="8" icon ="Urban Map" color="#9b8551"/>
 
-  <Button id="Gorge Map" onClick="draftMap" onMouseEnter = "infoLordOfTheBoard" onMouseExit="clearInfo" position="-25 -40 -20" width="40" height="20" fontSize="8" icon ="Gorge Map" color="#61746b"/>
+  <Button id="Gorge Map" onclick="draftMap" onMouseEnter = "infoLordOfTheBoard" onMouseExit="clearInfo" position="-25 -40 -20" width="40" height="20" fontSize="8" icon ="Gorge Map" color="#61746b"/>
   <Button id="Treasure Island Map" onclick="draftMap" position="15 -40 -20" width="40" height="20" onMouseEnter = "infoSupacatone" onMouseExit="clearInfo" fontSize="8" icon ="Treasure Island Map" color="#567826"/>
-  <Button id="The Deep Woods Map" onclick="draftMap" onMouseEnter="infoSlug" onMouseExit="clearInfo" position="55 -40 -20" width="40" height="20" fontSize="8" icon ="Deep Woods Map" color="#3f4839"/>
+  <Button id="Deep Woods Map" onclick="draftMap" onMouseEnter="infoSlug" onMouseExit="clearInfo" position="55 -40 -20" width="40" height="20" fontSize="8" icon ="Deep Woods Map" color="#3f4839"/>
   <Button onclick="draftFanMaps2" position="95 -40 -20" width="40" height="20" fontSize="8" icon ="More Button" color="#f3ecd1"/>
 </ToggleGroup>
 
@@ -429,7 +429,7 @@
   <Button id="Narrows and Islets Map" onclick="draftMap" onMouseEnter = "infoHierotitanAndLeonatus" onMouseExit="clearInfo" position="15 -20 -20" width="40" height="20" fontSize="8" icon ="Narrows and Islets Map" color="#9c9a7b"/>
   <Button id="Tunnel Unraveled Map" onclick="draftMap" onMouseEnter = "infoTunnelMap" onMouseExit="clearInfo" position="55 -20 -20" width="40" height="20" fontSize="8" icon ="Tunnel Unraveled Map" color="#422e19"/>
   <Button id="Tropics Map" onclick="draftMap" onMouseEnter = "infoJ444" onMouseExit="clearInfo" position="95 -20 -20" width="40" height="20" fontSize="8" icon ="Tropics Map" color="#7e986c"/>
-  <Button id="The Wastelands Map" onclick="draftMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="15 -40 -20" width="40" height="20" fontSize="8" icon ="Wastelands Map" color="#83805b"/>
+  <Button id="Wastelands Map" onclick="draftMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="15 -40 -20" width="40" height="20" fontSize="8" icon ="Wastelands Map" color="#83805b"/>
 
 <Button onclick="draftFanMaps1" position="-25 -40 -20" width="40" height="20" fontSize="8" icon ="Back Button" color="#f3ecd1"/>
 </ToggleGroup>

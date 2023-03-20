@@ -32,11 +32,12 @@ class Map(pydantic.BaseModel):
             "Button",
             {
                 "id": self.name,
-                "onClick": "makeMap",
+                "onclick": "makeMap",
                 "onMouseEnter": self.author,
                 "onMouseExit": "clearInfo",
                 "position": get_map_button_position(index),
                 "color": self.color,
+                "icon": self.name,
                 **BUTTON_PROPERTIES,
             },
         )
@@ -129,14 +130,14 @@ def make_map_pages(maps: list[Map]) -> list[list[ElementTree.Element]]:
     return pages
 
 
-maps = [
+REAL_MAPS = [
     Map(name="Summer Map", author="infoNevakanezahAndSlug", color="#4b4d35"),
     Map(name="Legends Map", author="infoSlug", color="#FAE5B3"),
     Map(name="Urban Map", author="infoSlug", color="#9b8551"),
     Map(name="Lost Woodland Map", author="infoEndgamer", color="#5b5a36"),
     Map(name="Gorge Map", author="infoLordOfTheBoard", color="#61746b"),
     Map(name="Treasure Island Map", author="infoSupacatone", color="#567826"),
-    Map(name="The Deep Woods Map", author="infoSlug", color="#3f4839"),
+    Map(name="Deep Woods Map", author="infoSlug", color="#3f4839"),
     Map(name="Australia Map", author="infoVatechman3", color="#899c58"),
     Map(
         name="Narrows and Islets Map",
@@ -145,5 +146,5 @@ maps = [
     ),
     Map(name="Tunnel Unraveled Map", author="infoTunnelMap", color="#422e19"),
     Map(name="Tropics Map", author="infoJ444", color="#7e986c"),
-    Map(name="The Wastelands Map", author="infoSlug", color="#83805b"),
+    Map(name="Wastelands Map", author="infoSlug", color="#83805b"),
 ]
