@@ -17,6 +17,18 @@ class Map(pydantic.BaseModel):
     color: str
 
 
+MAP_BUTTON_POSITIONS = [
+    "-25 5 -20",
+    "15 5 -20",
+    "55 5 -20",
+    "95 5 -20",
+    "-25 -15 -20",
+    "15 -15 -20",
+    "55 -15 -20",
+    "95 -15 -20",
+]
+
+
 def generate_maps_xml(maps: list[Map]):
     xml = [
         make_element_with_children(
@@ -30,14 +42,14 @@ def generate_maps_xml(maps: list[Map]):
                         "onClick": "makeMap",
                         "onMouseEnter": _map.author,
                         "onMouseExit": "clearInfo",
-                        "position": "-25 5 -20",
+                        "position": MAP_BUTTON_POSITIONS[index],
                         "width": "40",
                         "height": "20",
                         "fontSize": "8",
                         "color": _map.color,
                     },
                 )
-                for _map in maps
+                for index, _map in enumerate(maps)
             ],
         )
     ]

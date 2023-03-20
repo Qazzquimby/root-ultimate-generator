@@ -1,6 +1,11 @@
 import pytest
 
-from main import generate_maps_xml, Map, make_element_with_children
+from main import (
+    generate_maps_xml,
+    Map,
+    make_element_with_children,
+    MAP_BUTTON_POSITIONS,
+)
 import xml.etree.ElementTree as ElementTree
 
 # target_xml = Path("tests/target.xml").read_text()
@@ -35,71 +40,89 @@ def elements_equal(e1, e2):
     return all(elements_equal(c1, c2) for c1, c2 in zip(e1, e2))
 
 
-@pytest.mark.parametrize(
-    "indices, expected",
-    [
-        (
-            [1],
+def test_map_generation_1():
+    actual = generate_maps_xml([make_test_map(1)])
+
+    expected = [
+        make_element_with_children(
+            "ToggleGroup",
+            {"id": "fanMapButtons1", "active": "False"},
             [
                 make_element_with_children(
-                    "ToggleGroup",
-                    {"id": "fanMapButtons1", "active": "False"},
-                    [
-                        make_element_with_children(
-                            "Button",
-                            {
-                                "id": "Test Map 1",
-                                "onClick": "makeMap",
-                                "onMouseEnter": "Test Author 1",
-                                "onMouseExit": "clearInfo",
-                                "position": "-25 5 -20",
-                                "width": "40",
-                                "height": "20",
-                                "fontSize": "8",
-                                "color": "#000001",
-                            },
-                        )
-                    ],
+                    "Button",
+                    {
+                        "id": "Test Map 1",
+                        "onClick": "makeMap",
+                        "onMouseEnter": "Test Author 1",
+                        "onMouseExit": "clearInfo",
+                        "position": "-25 5 -20",
+                        "width": "40",
+                        "height": "20",
+                        "fontSize": "8",
+                        "color": "#000001",
+                    },
                 )
             ],
-        ),
-        # (
-        #     [2],
-        #     [
-        #         make_element_with_children(
-        #             "ToggleGroup",
-        #             {"id": "fanMapButtons1", "active": "False"},
-        #             [
-        #                 make_element_with_children(
-        #                     "Test Map 2",
-        #                     {"author": "Test Author 2", "color": "#000002"},
-        #                 )
-        #             ],
-        #         )
-        #     ],
-        # ),
-        # (
-        #     [3, 4],
-        #     [
-        #         make_element_with_children(
-        #             "ToggleGroup",
-        #             {"id": "fanMapButtons1", "active": "False"},
-        #             [
-        #                 make_element_with_children(
-        #                     "Test Map 3",
-        #                     {"author": "Test Author 3", "color": "#000003"},
-        #                 ),
-        #                 make_element_with_children(
-        #                     "Test Map 4",
-        #                     {"author": "Test Author 4", "color": "#000004"},
-        #                 ),
-        #             ],
-        #         )
-        #     ],
-        # ),
-    ],
-)
-def test_map_generation(indices: list[int], expected):
-    actual = generate_maps_xml([make_test_map(index) for index in indices])
+        )
+    ]
+
+    assert xml_lists_equal(actual, expected)
+
+
+def test_map_generation_2():
+    actual = generate_maps_xml([make_test_map(2)])
+
+    expected = [
+        make_element_with_children(
+            "ToggleGroup",
+            {"id": "fanMapButtons1", "active": "False"},
+            [
+                make_element_with_children(
+                    "Button",
+                    {
+                        "id": "Test Map 2",
+                        "onClick": "makeMap",
+                        "onMouseEnter": "Test Author 2",
+                        "onMouseExit": "clearInfo",
+                        "position": "-25 5 -20",
+                        "width": "40",
+                        "height": "20",
+                        "fontSize": "8",
+                        "color": "#000002",
+                    },
+                )
+            ],
+        )
+    ]
+
+    assert xml_lists_equal(actual, expected)
+
+
+def test_map_generation_len8():
+    actual = generate_maps_xml([make_test_map(i) for i in range(1, 9)])
+
+    expected = [
+        make_element_with_children(
+            "ToggleGroup",
+            {"id": "fanMapButtons1", "active": "False"},
+            [
+                make_element_with_children(
+                    "Button",
+                    {
+                        "id": f"Test Map {i}",
+                        "onClick": "makeMap",
+                        "onMouseEnter": f"Test Author {i}",
+                        "onMouseExit": "clearInfo",
+                        "position": MAP_BUTTON_POSITIONS[i - 1],
+                        "width": "40",
+                        "height": "20",
+                        "fontSize": "8",
+                        "color": f"#00000{i}",
+                    },
+                )
+                for i in range(1, 9)
+            ],
+        )
+    ]
 
     assert xml_lists_equal(actual, expected)
