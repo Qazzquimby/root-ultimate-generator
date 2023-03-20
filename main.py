@@ -29,6 +29,53 @@ MAP_BUTTON_POSITIONS = [
 ]
 
 
+def get_map_button_position(index: int):
+    return MAP_BUTTON_POSITIONS[index % len(MAP_BUTTON_POSITIONS)]
+
+
+def make_element_with_children(
+    name: str, attributes: dict[str, str], children: list[ElementTree.Element] = None
+) -> ElementTree.Element:
+    if children is None:
+        children = []
+
+    element = ElementTree.Element(name, attributes)
+    for child in children:
+        element.append(child)
+    return element
+
+
+# <Button onclick="maps2" position="95 -15 -20" width="40" height="20" fontSize="8" icon ="More Button" color="#f3ecd1"/>
+def make_next_map_button(current_page: int):
+    return make_element_with_children(
+        "Button",
+        {
+            "onclick": f"maps{current_page + 1}",
+            "position": MAP_BUTTON_POSITIONS[-1],
+            "width": "40",
+            "height": "20",
+            "fontSize": "8",
+            "icon": "More Button",
+            "color": "#f3ecd1",
+        },
+    )
+
+
+def make_previous_map_button(current_page: int):
+    return make_element_with_children(
+        "Button",
+        {
+            "onclick": f"maps{current_page - 1}",
+            "position": MAP_BUTTON_POSITIONS[4],
+            "width": "40",
+            "height": "20",
+            "fontSize": "8",
+            "icon": "Back Button",
+            "color": "#f3ecd1",
+        },
+    )
+
+
 def generate_maps_xml(maps: list[Map]):
     xml = [
         make_element_with_children(
@@ -42,7 +89,7 @@ def generate_maps_xml(maps: list[Map]):
                         "onClick": "makeMap",
                         "onMouseEnter": _map.author,
                         "onMouseExit": "clearInfo",
-                        "position": MAP_BUTTON_POSITIONS[index],
+                        "position": get_map_button_position(index),
                         "width": "40",
                         "height": "20",
                         "fontSize": "8",
@@ -55,16 +102,3 @@ def generate_maps_xml(maps: list[Map]):
     ]
 
     return xml
-
-
-# jinja template is named for an xml file is
-def make_element_with_children(
-    name: str, attributes: dict[str, str], children: list[ElementTree.Element] = None
-) -> ElementTree.Element:
-    if children is None:
-        children = []
-
-    element = ElementTree.Element(name, attributes)
-    for child in children:
-        element.append(child)
-    return element
