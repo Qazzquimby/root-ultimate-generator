@@ -1,9 +1,6 @@
-from pathlib import Path
-
-import pydantic as pydantic
 import pytest
 
-from main import generate_faction_selector, generate_maps_xml, Map
+from main import generate_maps_xml, Map, make_element_with_children
 import xml.etree.ElementTree as ElementTree
 
 # target_xml = Path("tests/target.xml").read_text()
@@ -16,18 +13,6 @@ def make_test_map(index: int) -> Map:
     return Map(
         name=f"Test Map {index}", author=f"Test Author {index}", color=f"#00000{index}"
     )
-
-
-def make_element_with_children(
-    name: str, attributes: dict[str, str], children: list[ElementTree.Element] = None
-) -> ElementTree.Element:
-    if children is None:
-        children = []
-
-    element = ElementTree.Element(name, attributes)
-    for child in children:
-        element.append(child)
-    return element
 
 
 def xml_lists_equal(xml1: list[ElementTree.Element], xml2: list[ElementTree.Element]):
