@@ -18,6 +18,18 @@ def make_test_map(index: int) -> Map:
     )
 
 
+def make_element_with_children(
+    name: str, attributes: dict[str, str], children: list[ElementTree.Element] = None
+) -> ElementTree.Element:
+    if children is None:
+        children = []
+
+    element = ElementTree.Element(name, attributes)
+    for child in children:
+        element.append(child)
+    return element
+
+
 def xml_lists_equal(xml1: list[ElementTree.Element], xml2: list[ElementTree.Element]):
     if len(xml1) != len(xml2):
         return False
@@ -39,25 +51,27 @@ def elements_equal(e1, e2):
 
 
 @pytest.mark.parametrize(
-    "indices",
+    "indices, expected",
     [
-        [1],
+        (
+            [1],
+            [
+                make_element_with_children(
+                    "ToggleGroup",
+                    {"id": "fanMapButtons1", "active": "False"},
+                    [
+                        make_element_with_children(
+                            "Test Map 1",
+                            {"author": "Test Author 1", "color": "#000001"},
+                        )
+                    ],
+                )
+            ],
+        ),
         # [2],
     ],
 )
-def test_map_generation(indices: list[int]):
-
+def test_map_generation(indices: list[int], expected):
     actual = generate_maps_xml([make_test_map(index) for index in indices])
-
-    # <ToggleGroup id="fanMapButtons1" active="False">
-    #     f"Test Map 1", {"author": "Test Author 1", "color": "#000001"}
-    expected = [
-        ElementTree.Element("ToggleGroup", {"id": "fanMapButtons1", "active": "False"})
-    ]
-    expected[0].append(
-        ElementTree.Element(
-            "Test Map 1", {"author": "Test Author 1", "color": "#000001"}
-        )
-    )
 
     assert xml_lists_equal(actual, expected)
