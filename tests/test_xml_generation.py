@@ -163,3 +163,42 @@ def test_map_generation__2_full_pages():
     ]
 
     assert_xml_lists_equal(actual, expected)
+
+
+def test_map_generation__3_pages():
+    actual = generate_maps_xml([make_test_map(i) for i in range(15)])
+
+    first_page_buttons = [make_test_map_xml(name=i, index=i) for i in range(7)] + [
+        make_next_map_button(0)
+    ]
+
+    second_page_buttons = (
+        [make_test_map_xml(name=i + 7, index=i) for i in range(4)]
+        + [make_previous_map_button(1)]
+        + [make_test_map_xml(name=i + 11, index=i + 5) for i in range(2)]
+        + [make_next_map_button(1)]
+    )
+
+    third_page_buttons = [make_test_map_xml(name=i + 13, index=i) for i in range(2)] + [
+        make_previous_map_button(2)
+    ]
+
+    expected = [
+        make_element_with_children(
+            "ToggleGroup",
+            {"id": "fanMapButtons1", "active": "False"},
+            first_page_buttons,
+        ),
+        make_element_with_children(
+            "ToggleGroup",
+            {"id": "fanMapButtons2", "active": "False"},
+            second_page_buttons,
+        ),
+        make_element_with_children(
+            "ToggleGroup",
+            {"id": "fanMapButtons3", "active": "False"},
+            third_page_buttons,
+        ),
+    ]
+
+    assert_xml_lists_equal(actual, expected)
