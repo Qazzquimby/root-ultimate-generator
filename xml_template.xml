@@ -141,30 +141,8 @@
     <Button id="Mountain Map" onMouseEnter="infoOfficialContent" onMouseExit="clearInfo" onclick="makeMap" position="95 45 -20" width="40" height="40" fontSize="8" icon ="Mountain Map" color="#764a52"/>
 </ToggleGroup>
 
-<ToggleGroup id="fanMapButtons1" active="False">
-    <Button id="Summer Map" onClick="makeMap" onMouseEnter = "infoNevakanezahAndSlug" onMouseExit="clearInfo" position="-25 5 -20" width="40" height="20" fontSize="8" icon ="Summer Map" color="#4b4d35"/>
-    <Button id="Legends Map" onClick="makeMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="15 5 -20" width="40" height="20" fontSize="8" icon ="Legends Map" color="#FAE5B3"/>
-    <Button id="Urban Map" onClick="makeMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="55 5 -20" width="40" height="20" fontSize="8" icon ="Urban Map" color="#9b8551"/>
-    <Button id="Lost Woodland Map" onclick="makeMap" onMouseEnter = "infoEndgamer" onMouseExit="clearInfo" position="95 5 -20" width="40" height="20" fontSize="8" icon ="Lost Woodland Map" color="#5b5a36"/>
-
-    <Button id="Gorge Map" onClick="makeMap" onMouseEnter = "infoLordOfTheBoard" onMouseExit="clearInfo" position="-25 -15 -20" width="40" height="20" fontSize="8" icon ="Gorge Map" color="#61746b"/>
-    <Button id="Treasure Island Map" onclick="makeMap" position="15 -15 -20" width="40" height="20" onMouseEnter = "infoSupacatone" onMouseExit="clearInfo" fontSize="8" icon ="Treasure Island Map" color="#567826"/>
-    <Button id="The Deep Woods Map" onclick="makeMap" onMouseEnter="infoSlug" onMouseExit="clearInfo" position="55 -15 -20" width="40" height="20" fontSize="8" icon ="Deep Woods Map" color="#3f4839"/>
-    <Button onclick="maps2" position="95 -15 -20" width="40" height="20" fontSize="8" icon ="More Button" color="#f3ecd1"/>
-</ToggleGroup>
-
-
-
-<ToggleGroup id="fanMapButtons2" active="False">
-  <Button id="Australia Map" onclick="makeMap" onMouseEnter = "infoVatechman3" onMouseExit="clearInfo" position="-25 5 -20" width="40" height="20" fontSize="8" icon ="Australia Map" color="#899c58"/>
-  <Button id="Narrows and Islets Map" onclick="makeMap" onMouseEnter = "infoHierotitanAndLeonatus" onMouseExit="clearInfo" position="15 5 -20" width="40" height="20" fontSize="8" icon ="Narrows and Islets Map" color="#9c9a7b"/>
-  <Button id="Tunnel Unraveled Map" onclick="makeMap" onMouseEnter = "infoTunnelMap" onMouseExit="clearInfo" position="55 5 -20" width="40" height="20" fontSize="8" icon ="Tunnel Unraveled Map" color="#422e19"/>
-  <Button id="Tropics Map" onclick="makeMap" onMouseEnter = "infoJ444" onMouseExit="clearInfo" position="95 5 -20" width="40" height="20" fontSize="8" icon ="Tropics Map" color="#7e986c"/>
-  <Button id="The Wastelands Map" onclick="makeMap" onMouseEnter = "infoSlug" onMouseExit="clearInfo" position="15 -15 -20" width="40" height="20" fontSize="8" icon ="Wastelands Map" color="#83805b"/>
-
-
-  <Button onclick="maps1" position="-25 -15 -20" width="40" height="20" fontSize="8" icon ="Back Button" color="#f3ecd1"/>
-</ToggleGroup>
+{# Jinja Template #}
+{{fanMapButtons}}
 
 <ToggleGroup id="decksButtonsStandard" active="False">
     <Button id="Standard Deck" onMouseEnter="infoOfficialContent" onMouseExit="clearInfo" onclick="makeDeck" position="-25 -55 -20" width="40" height="40" fontSize="8" icon="Standard Deck" color="#8d7f81"/>
