@@ -24,8 +24,18 @@ def generate_maps_xml(maps: list[Map]):
             {"id": "fanMapButtons1", "active": "False"},
             [
                 make_element_with_children(
-                    _map.name,
-                    {"author": _map.author, "color": _map.color},
+                    "Button",
+                    {
+                        "id": _map.name,
+                        "onClick": "makeMap",
+                        "onMouseEnter": _map.author,
+                        "onMouseExit": "clearInfo",
+                        "position": "-25 5 -20",
+                        "width": "40",
+                        "height": "20",
+                        "fontSize": "8",
+                        "color": _map.color,
+                    },
                 )
                 for _map in maps
             ],
