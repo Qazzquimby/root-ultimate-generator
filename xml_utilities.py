@@ -11,3 +11,6 @@ def make_element_with_children(
     for child in children:
         element.append(child)
     return element
+
+def to_string(element: ElementTree.Element) -> str:
+    return ElementTree.tostring(element, encoding='utf8', method='xml').decode("utf8")
