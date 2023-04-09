@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from fan_maps import generate_maps_xml, REAL_MAPS
+from fan_maps import get_map_elements, REAL_MAPS
 from save_builder import build_xml
 
 
@@ -21,7 +21,7 @@ def test_escape_xml():
 
 
 def test_with_real_maps():
-    real_maps_xml = generate_maps_xml(REAL_MAPS)
+    real_maps_xml = get_map_elements(REAL_MAPS)
     actual = build_xml(real_maps_xml)
     actual = actual.replace("\r", "").replace("\n", "")
     # string escape actual.
@@ -31,7 +31,12 @@ def test_with_real_maps():
     escaped_actual = json.dumps(actual)
 
     expected = Path("data/real_xml.txt").read_text()
-    expected = expected.replace("\r", "").replace("\n", "").replace(r"\r", "").replace(r"\n", "")
+    expected = (
+        expected.replace("\r", "")
+        .replace("\n", "")
+        .replace(r"\r", "")
+        .replace(r"\n", "")
+    )
 
     # not a useful test either.
     # pretty hard to test this because order and whitespace could happily differ.

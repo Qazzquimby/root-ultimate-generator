@@ -12,5 +12,8 @@ def make_element_with_children(
         element.append(child)
     return element
 
+
 def to_string(element: ElementTree.Element) -> str:
-    return ElementTree.tostring(element, encoding='utf8', method='xml').decode("utf8")
+    return ElementTree.tostring(
+        element, encoding="utf8", method="xml", xml_declaration=False
+    ).decode("utf8")

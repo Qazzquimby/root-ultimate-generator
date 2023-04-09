@@ -6,7 +6,7 @@ from fan_maps import (
     get_map_button_position,
     make_next_map_button,
     make_previous_map_button,
-    generate_maps_xml,
+    get_map_elements,
     BUTTON_PROPERTIES,
     REAL_MAPS,
 )
@@ -68,7 +68,7 @@ def make_test_map_xml(name: int, index: int) -> ElementTree.Element:
 
 
 def test_map_generation_1():
-    actual = generate_maps_xml([make_test_map(1)])
+    actual = get_map_elements([make_test_map(1)])
 
     expected = [
         make_element_with_children(
@@ -84,7 +84,7 @@ def test_map_generation_1():
 
 
 def test_map_generation_2():
-    actual = generate_maps_xml([make_test_map(2)])
+    actual = get_map_elements([make_test_map(2)])
 
     expected = [
         make_element_with_children(
@@ -100,7 +100,7 @@ def test_map_generation_2():
 
 
 def test_map_generation_len8():
-    actual = generate_maps_xml([make_test_map(i) for i in range(8)])
+    actual = get_map_elements([make_test_map(i) for i in range(8)])
 
     expected = [
         make_element_with_children(
@@ -114,7 +114,7 @@ def test_map_generation_len8():
 
 
 def test_map_generation_len9():
-    actual = generate_maps_xml([make_test_map(i) for i in range(9)])
+    actual = get_map_elements([make_test_map(i) for i in range(9)])
 
     expected = [
         make_element_with_children(
@@ -138,7 +138,7 @@ def test_map_generation_len9():
 
 
 def test_map_generation__2_full_pages():
-    actual = generate_maps_xml([make_test_map(i) for i in range(14)])
+    actual = get_map_elements([make_test_map(i) for i in range(14)])
 
     first_page_buttons = [make_test_map_xml(name=i, index=i) for i in range(7)] + [
         make_next_map_button(0)
@@ -167,7 +167,7 @@ def test_map_generation__2_full_pages():
 
 
 def test_map_generation__3_pages():
-    actual = generate_maps_xml([make_test_map(i) for i in range(15)])
+    actual = get_map_elements([make_test_map(i) for i in range(15)])
 
     first_page_buttons = [make_test_map_xml(name=i, index=i) for i in range(7)] + [
         make_next_map_button(0)
@@ -206,7 +206,7 @@ def test_map_generation__3_pages():
 
 
 def test_map_generation__real_data():
-    actual = generate_maps_xml(REAL_MAPS)
+    actual = get_map_elements(REAL_MAPS)
 
     expected_xml = [
         """

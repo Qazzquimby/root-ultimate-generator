@@ -75,7 +75,7 @@ def make_previous_map_button(current_page_index: int):
     )
 
 
-def generate_maps_xml(maps: list[Map]):
+def get_map_elements(maps: list[Map]):
     pages = make_map_pages(maps)
 
     xml = [
