@@ -62,7 +62,15 @@ def get_everything(lua):
 
 
 def get_assets(lua):
-    lua_tree = ast.parse(lua.replace("!=", "~="))
+    cleaned = (
+        lua.replace("!=", "~=")
+        .replace("\\t", "\t")
+        .replace("\\n", "\n")
+        .replace('\\"', '"')
+        .replace("\\'", "'")
+    )
+
+    lua_tree = ast.parse(cleaned)
     assets_ = find_assignment(lua_tree, "assets")
     assets = {asset["name"]: asset["url"] for asset in assets_}
     # {        name = "Spinners of Mercy Icon", url = "http://cloud-3.steamusercontent.com/ugc/1920249469919849760/D2CF1773DD8589DCD09911AF0EA349324847B62F/"},
@@ -105,10 +113,11 @@ def _get_fan_factions(everything, assets, adset_draft_faces):
             adset_card_face=adset_card_face,
         )
         factions.append(faction)
+    return factions
 
 
 def get_fan_factions():
-    lua_file = open("data/real_lua_script.lua", "r")
+    lua_file = open("data/real_lua_script_raw.txt", "r")
     lua = lua_file.read()
 
     everything, other_lua = get_everything(lua)
